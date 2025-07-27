@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed Layout</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .live-gif {
+      width: 100px;
+      display: block;
+      margin: 10px auto 0 auto;
+      height: 85px;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Animated GIF above Project -->
+      <img src="Loading 40 _ Paperplane.gif" class="live-gif" alt="Flying Paper Plane">
+      <h2 class="toggle-submenu" data-target="projectSubmenu">Project ▼</h2><hr>
+      <ul class="submenu hidden" id="projectSubmenu"> <br>
+        <li><a href="#">Apps</a></li>
+        <li><a href="#">Droplets</a></li>
+        <li><a href="#">Functions</a></li>
+        <li><a href="#">Kubemeters</a></li>
+        <li><a href="#">Volumes</a></li>
+        <li><a href="#">Databases</a></li>
+        <li><a href="#">Spaces</a></li>
+        <li><a href="#">Counter Registry</a></li>
+        <li><a href="#">Images</a></li>
+        <li><a href="#">Networking</a></li>
+        <li><a href="#">Monitoring</a></li>
+        <li><a href="#">Add Ons</a></li>
+      </ul>
+      <hr>
+      <br>
+      <h2 class="toggle-submenu" data-target="settingsSubmenu">Settings ▼</h2>
+      <ul class="submenu hidden" id="settingsSubmenu">
+        <li><a href="#">Billing</a></li>
+        <li><a href="#">API</a></li>
+      </ul>
+      <hr>
+      <a href="#" class="market">Marketplace</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Navbar -->
+      <div class="navbar">
+        <div class="search-box">
+          <button class="search-icon" id="searchIcon">🔍</button>
+          <input type="text" placeholder="Search by resource name or public IP (Cmd+B)" id="searchInput">
+        </div>
+        <div class="btn">
+          <button class="create" id="showLogin">Create ▼</button>
+          <span class="icon">❓</span>
+          <span class="icon">🔔</span>
+          <div class="user-info" onclick="toggleProfileMenu()">
+            <div>
+              <strong>My Team</strong><br>
+              <span class="estimated">Estimated costs: $0.86</span>
+            </div>
+            <div class="circle">MT</div>
+            <div class="profile-menu" id="profileMenu">
+              <a href="#">My Profile</a>
+              <a href="#">Settings</a>
+              <a href="#">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="content">
+       <label class="data2" for="datacenter">Datacenter</label>
+<select id="datacenter">
+  <option>Amsterdam • Datacenter 3 • AMS3</option>
+  <option>New York • Datacenter 2 • NYC2</option>
+  <option>Singapore • Datacenter 1 • SG1</option>
+</select>
+<p class="para">VPC Network. <a href="#" class="g">default.ams3</a></p>
+<button class="h" id="defaultBtn">DEFAULT</button>
+
+        <p class="lore">Lorem ipsum dolor sit ametipsum cos cum deleniti, quia, corrupti facilis ullam? Quidem, unde incidunt. Totam repudiandae non doloremque iusto dicta?</p>
+
+        <label for="data" class="data">Choose an image</label>
+        <ul class="lisa">
+          <li class="lis" onclick="toggleImages('marketplace-images')">
+            OS Marketplace
+            <ul class="sub-images" id="marketplace-images">
+              <li><img src="ludu4.png" alt="Ubuntu"></li>
+              <li><img src="Screenshot 2025-07-15 220853.png" alt="RancherOS"></li>
+              <li><img src="ludu6.png" alt="Fedora"></li>
+            </ul>
+          </li>
+          <li class="lis">
+            <label for="fileUpload" style="cursor: pointer;">Custom Images</label>
+            <input type="file" id="fileUpload" style="display: none;" accept="image/*">
+          </li>
+        </ul>
+        <hr class="u1">
+        <label class="data21" for="datacenter">Version</label>
+<select id="datacenter">
+  <option>22.04 X 64</option>
+  <option>24.5 X 32</option>
+  <option>28.08 X 64</option>
+</select>
+<hr class="u2">
+<div class="foo">
+  <div class="cost-labels">
+    <p id="monthlyLabel" onclick="setCost('monthly')">Monthly Cost</p>
+    <p id="hourlyLabel" onclick="setCost('hourly')">Hourly Cost</p>
+  </div>
+  <div class="cost-values">
+    <p id="monthlyValue">$4.00/Month <button class="droplet">Create Droplet</button></p>
+    <p id="hourlyValue">$0.200/Hour</p>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Form Outside Layout -->
+  <div class="form" id="loginForm" style="display: none;">
+    <button class="close-btn" onclick="closeLoginForm()">✖</button>
+    <h2>Login Here</h2>
+    <input type="email" name="email" placeholder="Enter Email Here">
+    <input type="password" name="password" placeholder="Enter Password Here">
+    <button class="btn">Login</button>
+    <p class="link">Don't Have an Account?<br> <a href="#">Sign up</a></p>
+  </div>
+
+  <script>
+    function toggleProfileMenu() {
+      const menu = document.getElementById('profileMenu');
+      menu.classList.toggle('show');
+    }
+
+    document.addEventListener('click', function (e) {
+      const menu = document.getElementById('profileMenu');
+      const userInfo = document.querySelector('.user-info');
+      if (!userInfo.contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
+
+    document.getElementById('defaultBtn').addEventListener('click', function () {
+      const datacenterSelect = document.getElementById('datacenter');
+      datacenterSelect.selectedIndex = 0;
+    });
+
+    document.getElementById('searchIcon').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('searchInput').focus();
+    });
+
+    document.getElementById('searchInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const query = e.target.value.trim();
+        if (query !== '') {
+          alert('Searching for: ' + query);
+        }
+      }
+    });
+
+    function toggleImages(id) {
+      const allLists = document.querySelectorAll('.sub-images');
+      allLists.forEach(list => {
+        if (list.id === id) {
+          list.classList.toggle('show');
+        } else {
+          list.classList.remove('show');
+        }
+      });
+    }
+
+    document.getElementById('showLogin').addEventListener('click', function () {
+      document.getElementById('loginForm').style.display = 'block';
+    });
+
+    function closeLoginForm() {
+      document.getElementById('loginForm').style.display = 'none';
+    }
+
+    // Toggle Sidebar Submenus
+    document.querySelectorAll('.toggle-submenu').forEach(toggle => {
+      toggle.addEventListener('click', function () {
+        const target = document.getElementById(this.dataset.target);
+        target.classList.toggle('hidden');
+      });
+    });
+
+    function setCost(type) {
+      const monthlyLabel = document.getElementById('monthlyLabel');
+      const hourlyLabel = document.getElementById('hourlyLabel');
+      const monthlyValue = document.getElementById('monthlyValue');
+      const hourlyValue = document.getElementById('hourlyValue');
+
+      if (type === 'monthly') {
+        monthlyLabel.classList.add('bold');
+        monthlyValue.classList.add('bold');
+        hourlyLabel.classList.remove('bold');
+        hourlyValue.classList.remove('bold');
+      } else {
+        hourlyLabel.classList.add('bold');
+        hourlyValue.classList.add('bold');
+        monthlyLabel.classList.remove('bold');
+        monthlyValue.classList.remove('bold');
+      }
+    }
+  </script>
+</body>
+</html>
